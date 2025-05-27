@@ -16,8 +16,6 @@ export default defineConfig({
 
     server: {
         https: true,
-        headers: {
-        "Strict-Transport-Security": `max-age=${oneYearInSeconds}`,
-        },
+        host: '0.0.0.0',
     },
 });
