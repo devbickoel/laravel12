@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
+import basicSsl from '@vitejs/plugin-basic-ssl'
 
 const oneYearInSeconds = 60 * 60 * 24 * 365;
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
+        basicSsl(),
     ],
 
     server: {
