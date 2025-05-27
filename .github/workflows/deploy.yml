@@ -1,0 +1,41 @@
+name: Deploy Laravel ke Railway
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup PHP (Versi Terbaru)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 'latest'
+          extensions: pgsql, pdo_pgsql
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Set Laravel environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Migrate database
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: php artisan migrate --force
+
+      - name: Deploy to Railway
+        run: curl -X POST "https://api.railway.app/deploy"
