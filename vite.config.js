@@ -10,4 +10,7 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    base: process.env.NODE_ENV === 'production'
+        ? process.env.VITE_APP_URL + '/build/'
+        : '/build/',
 });
