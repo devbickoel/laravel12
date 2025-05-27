@@ -39,5 +39,5 @@ Route::post('/auth-telegram', function (Request $request) {
     // Login otomatis ke Laravel
     Auth::login($user);
 
-    return redirect('/'); // Setelah login, kembali ke halaman utama
+    return redirect('welcome'); // Setelah login, kembali ke halaman utama
 });
