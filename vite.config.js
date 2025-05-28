@@ -4,6 +4,13 @@ import tailwindcss from '@tailwindcss/vite';
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
 export default defineConfig({
+    build: {
+        manifest: true,
+        outDir: 'public/build',
+        rollupOptions: {
+        input: 'resources/js/app.js',
+        },
+    },
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
@@ -13,17 +20,6 @@ export default defineConfig({
         basicSsl(),
     ],
     base: './', // Paksa path relatif tanpa domain
-    build: {
-        manifest: true,
-        outDir: 'public/build',
-        rollupOptions: {
-            output: {
-                entryFileNames: "assets/[name]-[hash].js",
-                chunkFileNames: "assets/[name]-[hash].js",
-                assetFileNames: "assets/[name]-[hash].[ext]"
-            }
-        }
-    },
     server: {
         https: true,
         host: '0.0.0.0',
