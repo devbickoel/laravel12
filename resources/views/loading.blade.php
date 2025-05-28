@@ -10,6 +10,6 @@
   <div class="flex flex-col items-center">
     <div class="w-16 h-16 border-8 border-blue-600 border-dashed rounded-full animate-spin"></div>
   </div>
- <script src="{{ secure_asset('build/assets/app-B7rXto4V.js') }}"></script>
+ <script src="{{ secure_asset('build/assets/app-CrY7xvCv.js') }}"></script>
 </body>
 </html>
