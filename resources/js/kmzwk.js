@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
-        window.location.href = "/welcome";
+        window.location.href = "/main";
     }, 5000);
 });
